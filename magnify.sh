@@ -22,3 +22,4 @@ cd $magnify_source/scripts
 #echo $rebin
 
 root -l loadClasses.C Magnify.C'("'"$rootfile"'", '$threshold', "'"$frame"'", '$rebin')'
+#checking out the branch with this comment 
