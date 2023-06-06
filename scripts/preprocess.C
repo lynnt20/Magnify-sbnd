@@ -106,9 +106,9 @@ void preprocess(
       bool set_baseline=false,
       const char* file_open_mode = "update",
       float xmin=-0.5,
-      float xmax=15359.5,
+      float xmax=11264.5,
       float ymin=0,
-      float ymax=6000
+      float ymax=3400
 ) {
 
   std::string fileName = getFileName(inPath);
@@ -125,11 +125,11 @@ void preprocess(
   if(std::string(intag).size()>0 &&
      std::string(intag).find("tree:")==0){
     std::string tree_name = std::string(intag).substr(5, std::string(intag).size());
-    TTree* treelist[6];
+    TTree* treelist[2];
     int ntree=0;
     TFile* fout = new TFile(outPath.c_str(), file_open_mode);
     TList *list = new TList;
-    for(int i=0; i<6; i++){
+    for(int i=0; i<2; i++){
       std::string tree_name1 = tree_name + std::to_string(i);
       treelist[i] = (TTree*)f1->Get(tree_name1.c_str());
       if(treelist[i]){

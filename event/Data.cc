@@ -102,13 +102,13 @@ void Data::load_channelstatus(){
 
 int Data::GetPlaneNo(int chanNo)
 {
-    // 800 u + 800 v + 960 w = 2560
-    int apaNo = chanNo / 2560;
-    int offset = chanNo - apaNo*2560;
-    if (offset < 800) {
+    // 1984 u + 1984 v + 1664 w = 5632
+    int apaNo = chanNo / 5632;
+    int offset = chanNo - apaNo*5632;
+    if (offset < 1984) {
         return 0;
     }
-    else if (offset < 1600) {
+    else if (offset < 3968) {
         return 1;
     }
     else {
@@ -157,7 +157,7 @@ void Data::load_waveform(const char* name, const char* title, double scale, doub
         cout << msg << endl;
     	// throw runtime_error(msg.c_str());
         int nChannels = 2400;
-        int nTDCs = 6000;
+        int nTDCs = 3400;
         int firstChannel = 0;
         if (msg.Contains("hv")) {
             firstChannel = 2400;
@@ -184,7 +184,7 @@ void Data::load_rawwaveform(const char* name, const char* baseline_name)
         cout << msg << endl;
         // throw runtime_error(msg.c_str());
         int nChannels = 2400;
-        int nTDCs = 6000;
+        int nTDCs = 3400;
         int firstChannel = 0;
         if (msg.Contains("hv")) {
             firstChannel = 2400;

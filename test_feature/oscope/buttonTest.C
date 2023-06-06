@@ -178,7 +178,7 @@ ButtonWindow::ButtonWindow(const char* filename, int ch)
 
 //______________________________________________________________________________
 int planeid(int ch){
-  int ch1 = ch % 2560;
+  int ch1 = ch % 5632;
   if (ch1<800) return 0;
   else if (ch1<1600) return 1;
   else return 2;
@@ -213,7 +213,7 @@ void ButtonWindow::init()
    int ch = m_current_channel;
    int wpid  = planeid(ch);
    const char* label = plane_label(wpid);
-   int anodeid = ch / 2560;
+   int anodeid = ch / 5632;
    const char* orig_tag = Form("h%s_orig%d",label,anodeid);
    const char* raw_tag = Form("h%s_raw%d",label,anodeid);
    const char* wiener_tag = Form("h%s_wiener%d",label,anodeid);

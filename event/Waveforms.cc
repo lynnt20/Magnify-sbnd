@@ -68,7 +68,7 @@ Waveforms::Waveforms(TH2F *h, BadChannels* v, TString name, TString title, doubl
         }
     }
     for (int i=0; i!=5; i++) {
-        line = new TLine(2560*(i+1), 0, 2560*(i+1), 6000);
+        line = new TLine(5632*(i+1), 0, 5632*(i+1), 3400);
         line->SetLineColorAlpha(kBlack, 0.2);
         apa_lines.push_back(line);
     }
@@ -256,13 +256,13 @@ TH1F* Waveforms::Draw1DTick(int tick, const char* options)
 
 int Waveforms::GetPlaneNo(int chanNo)
 {
-    // 800 u + 800 v + 960 w = 2560
-    int apaNo = chanNo / 2560;
-    int offset = chanNo - apaNo*2560;
-    if (offset < 800) {
+    // 1984 u + 1984 v + 1664 w = 5632
+    int apaNo = chanNo / 5632;
+    int offset = chanNo - apaNo*5632;
+    if (offset < 1984) {
         return 0;
     }
-    else if (offset < 1600) {
+    else if (offset < 3968) {
         return 1;
     }
     else {

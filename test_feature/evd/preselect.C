@@ -5,7 +5,7 @@ void dothis(const char* in_file, //input file name
 	int x_start_bin=1, 
 	int x_end_bin=2560,
 	int y_start_bin=1,
-	int y_end_bin=6000,
+	int y_end_bin=3400,
 	int x_rebin=1,
 	int y_rebin=1,
         bool set_baseline=false,
