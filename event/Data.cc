@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <string>
+#include <regex>
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
@@ -63,6 +64,24 @@ void Data::load_runinfo()
         t->SetBranchAddress("subRunNo", &subRunNo);
         t->SetBranchAddress("eventNo", &eventNo);
         t->GetEntry(0);
+    }
+    // the input file has format: sbnd-data-check-14445_1_120-magnify.root
+
+    else if (strstr(rootFile->GetName(), "_")) {
+        string filename = rootFile->GetName();
+        std::regex pattern("(\\d+)");
+        std::smatch matches;
+        std::vector<int> numbers;
+
+        while (std::regex_search(filename, matches, pattern)) {
+            for (const auto& match : matches) {
+                numbers.push_back(std::stoi(match.str()));
+            }
+            filename = matches.suffix().str(); // Continue searching the rest of the string
+        }
+        runNo = numbers[0];
+        subRunNo = numbers[2];
+        eventNo = numbers[4];
     }
     else {
         runNo = 0;
